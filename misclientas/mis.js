@@ -3,6 +3,8 @@ const clientCount = document.querySelector('#client-count');
 const searchInput = document.querySelector('#client-search');
 let clients = [];
 
+const sortClients = (items) => [...items].sort((first, second) => first.name.localeCompare(second.name, 'es', { sensitivity: 'base' }));
+
 const renderClients = (clients) => {
 	clientCount.textContent = clients.length;
 	list.replaceChildren();
@@ -39,11 +41,11 @@ const renderClients = (clients) => {
 searchInput.addEventListener('input', () => {
 	const query = searchInput.value.trim().toLocaleLowerCase();
 	const filteredClients = clients.filter((client) => `${client.name} ${client.phone || ''}`.toLocaleLowerCase().includes(query));
-	renderClients(filteredClients);
+	renderClients(sortClients(filteredClients));
 });
 
 LashBookStorage.getClients().then((loadedClients) => {
-	clients = loadedClients;
+	clients = sortClients(loadedClients);
 	renderClients(clients);
 }).catch(() => {
 	renderClients([]);
