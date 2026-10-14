@@ -25,13 +25,16 @@
 			<section class="client-list-section" aria-labelledby="list-title">
 				<div class="section-heading">
 					<div>
-						<p class="eyebrow">Fichas guardadas</p>
+						<p class="eyebrow">Clientas guardadas</p>
 						<h2 id="list-title">Todas tus clientas</h2>
 					</div>
 					<span class="client-count" id="client-count">0</span>
 				</div>
+				<label class="search-box" for="client-search">
+					<span aria-hidden="true">⌕</span>
+					<input id="client-search" type="search" placeholder="Buscar por nombre o teléfono" autocomplete="off">
+				</label>
 				<div class="client-list" id="client-list-items" aria-live="polite">
-					<div class="empty-state" id="empty-state">Todavía no tienes clientas guardadas.</div>
 				</div>
 			</section>
 	</main>

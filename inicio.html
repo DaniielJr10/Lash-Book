@@ -36,12 +36,6 @@
 				</span>
 				<span>Clientas <b aria-hidden="true">›</b></span>
 			</a>
-			<button class="quick-link" type="button" id="technical-sheets">
-				<span class="quick-icon" aria-hidden="true">
-					<svg viewBox="0 0 24 24" role="img"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg>
-				</span>
-				<span>Fichas técnicas <b aria-hidden="true">›</b></span>
-			</button>
 		</nav>
 
 		<section class="content-section today-section" aria-labelledby="today-title">
@@ -49,7 +43,9 @@
 				<h2 id="today-title">Citas de hoy</h2>
 				<a href="agendar_cita/agendar.html">Ver día</a>
 			</div>
-			<div class="empty-state" id="today-state">Tu agenda de hoy está libre.</div>
+			<div class="appointments-list" id="today-list">
+				<div class="empty-state" id="today-state">Tu agenda de hoy está libre.</div>
+			</div>
 		</section>
 
 		<section class="content-section upcoming-section" aria-labelledby="upcoming-title">
@@ -57,10 +53,31 @@
 				<h2 id="upcoming-title">Próximas citas</h2>
 				<a href="agendar_cita/agendar.html">Ver agenda</a>
 			</div>
-			<div class="empty-state" id="upcoming-state">Aún no tienes citas próximas.</div>
+			<div class="appointments-list" id="upcoming-list">
+				<div class="empty-state" id="upcoming-state">Aún no tienes citas próximas.</div>
+			</div>
 		</section>
 	</main>
-	<div class="toast" id="toast" role="status" aria-live="polite"></div>
+	<div class="appointment-modal" id="appointment-modal" hidden>
+		<div class="modal-backdrop" data-close-modal></div>
+		<article class="appointment-detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+			<button class="modal-close" type="button" data-close-modal aria-label="Cerrar detalle">×</button>
+			<p class="detail-kicker">Detalle de la cita</p>
+			<h2 id="detail-title">Cita</h2>
+			<div class="detail-date" id="detail-date"></div>
+			<div class="detail-grid">
+				<div><span>Clienta</span><strong id="detail-client"></strong></div>
+				<div><span>Servicio</span><strong id="detail-service"></strong></div>
+				<div><span>Precio</span><strong id="detail-price"></strong></div>
+				<div><span>Anticipo</span><strong id="detail-deposit"></strong></div>
+			</div>
+			<div class="detail-notes" id="detail-notes-wrap"><span>Notas</span><p id="detail-notes"></p></div>
+			<div class="detail-actions">
+				<button class="edit-button" id="edit-appointment" type="button">Editar cita</button>
+				<button class="delete-button" id="delete-appointment" type="button">Borrar</button>
+			</div>
+		</article>
+	</div>
 	<script src="inicio.js"></script>
 </body>
 </html>
