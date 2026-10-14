@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mi Lash Book</title>
+	<link rel="manifest" href="manifest.json">
+	<link rel="apple-touch-icon" href="icon.svg">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
@@ -17,10 +19,6 @@
 			<p class="date-label" id="current-date">Miércoles, 14 de octubre de 2026</p>
 			<h1 id="page-title">Mi Lash Book</h1>
 			<p class="welcome-message" id="welcome-message">No tienes citas para hoy.</p>
-			<a class="primary-button" href="agendar_cita/agendar.html">
-				<span class="button-plus" aria-hidden="true">+</span>
-				Agregar cita
-			</a>
 		</section>
 
 		<nav class="quick-links" aria-label="Accesos rápidos">
@@ -28,7 +26,7 @@
 				<span class="quick-icon" aria-hidden="true">
 					<svg viewBox="0 0 24 24" role="img"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"></path></svg>
 				</span>
-				<span>Agenda <b aria-hidden="true">›</b></span>
+				<span>Agendar cita <b aria-hidden="true">›</b></span>
 			</a>
 			<a class="quick-link" href="misclientas/mis.html">
 				<span class="quick-icon" aria-hidden="true">
@@ -41,7 +39,6 @@
 		<section class="content-section today-section" aria-labelledby="today-title">
 			<div class="section-heading">
 				<h2 id="today-title">Citas de hoy</h2>
-				<a href="agendar_cita/agendar.html">Ver día</a>
 			</div>
 			<div class="appointments-list" id="today-list">
 				<div class="empty-state" id="today-state">Tu agenda de hoy está libre.</div>
@@ -51,7 +48,6 @@
 		<section class="content-section upcoming-section" aria-labelledby="upcoming-title">
 			<div class="section-heading">
 				<h2 id="upcoming-title">Próximas citas</h2>
-				<a href="agendar_cita/agendar.html">Ver agenda</a>
 			</div>
 			<div class="appointments-list" id="upcoming-list">
 				<div class="empty-state" id="upcoming-state">Aún no tienes citas próximas.</div>
@@ -91,5 +87,6 @@
 		</article>
 	</div>
 	<script src="inicio.js"></script>
+	<script src="pwa.js"></script>
 </body>
 </html>

@@ -72,6 +72,18 @@ const LashBookStorage = (() => {
 			if (error) throw error;
 			return { ...data, client: data.clienta_nombre, service: data.servicio, date: data.fecha, time: data.hora, price: data.precio, deposit: data.anticipo, notes: data.notas };
 		},
+		async hasAppointmentConflict(appointment) {
+			if (!appointment.date || !appointment.time) return false;
+			const normalizedTime = appointment.time.length === 5 ? `${appointment.time}:00` : appointment.time;
+			if (!remote) {
+				return readLocal(appointmentsKey).some((item) => item.date === appointment.date && item.time.slice(0, 5) === normalizedTime.slice(0, 5) && item.id !== appointment.id);
+			}
+		let request = remote.from('citas').select('id').eq('fecha', appointment.date).eq('hora', normalizedTime);
+			if (appointment.id) request = request.neq('id', appointment.id);
+			const { data, error } = await request;
+			if (error) throw error;
+			return data.length > 0;
+		},
 		async saveAppointment(appointment) {
 			if (!remote) {
 				const savedAppointment = { id: createId(), ...appointment, createdAt: new Date().toISOString() };

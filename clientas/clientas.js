@@ -1,5 +1,7 @@
 const form = document.querySelector('#client-form');
 const toast = document.querySelector('#toast');
+const toastTitle = toast.querySelector('.toast-title');
+const toastMessage = toast.querySelector('.toast-message');
 const selectedLabels = document.querySelectorAll('.selected-zone');
 const clearMap = document.querySelector('#clear-map');
 const clientId = new URLSearchParams(window.location.search).get('id');
@@ -86,7 +88,8 @@ const loadClient = async () => {
 };
 
 loadClient().catch(() => {
-	toast.textContent = 'No se pudo cargar la información de la clienta.';
+	toastTitle.textContent = 'No se pudo cargar';
+	toastMessage.textContent = 'Revisa la conexión e inténtalo nuevamente.';
 	toast.classList.add('is-visible');
 });
 
@@ -116,7 +119,8 @@ form.addEventListener('submit', async (event) => {
 		map: { left: drawings.left, right: drawings.right },
 		notes: formData.get('client-notes').trim()
 	});
-	toast.textContent = 'Clienta guardada correctamente.';
+	toastTitle.textContent = clientId ? 'Clienta actualizada' : 'Clienta creada';
+	toastMessage.textContent = clientId ? 'Los cambios se guardaron correctamente.' : 'La información se guardó correctamente.';
 	toast.classList.add('is-visible');
 	clearTimeout(toastTimer);
 	toastTimer = setTimeout(() => { window.location.href = '../misclientas/mis.html'; }, 900);

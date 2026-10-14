@@ -18,6 +18,7 @@ document.querySelector('#current-date').textContent = now.toLocaleDateString('es
 
 const formatDate = (date) => new Date(`${date}T12:00:00`).toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
 const formatTime = (time) => time ? new Date(`1970-01-01T${time}`).toLocaleTimeString('es-ES', { hour: 'numeric', minute: '2-digit' }) : '';
+const formatAmount = (amount) => amount ? `$${Number(amount).toLocaleString('es-CO')}` : 'Sin registrar';
 
 const createAppointmentCard = (appointment) => {
 	const card = document.createElement('button');
@@ -35,8 +36,8 @@ const openAppointmentDetail = (appointment) => {
 	document.querySelector('#detail-date').textContent = `${formatDate(appointment.date)} · ${formatTime(appointment.time)}`;
 	document.querySelector('#detail-client').textContent = appointment.client;
 	document.querySelector('#detail-service').textContent = appointment.service;
-	document.querySelector('#detail-price').textContent = appointment.price ? `$${appointment.price}` : 'Sin registrar';
-	document.querySelector('#detail-deposit').textContent = appointment.deposit ? `$${appointment.deposit}` : 'Sin registrar';
+	document.querySelector('#detail-price').textContent = formatAmount(appointment.price);
+	document.querySelector('#detail-deposit').textContent = formatAmount(appointment.deposit);
 	document.querySelector('#detail-notes').textContent = appointment.notes || 'Sin notas adicionales.';
 	modal.hidden = false;
 };

@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Clientas | Mi Lash Book</title>
+	<link rel="manifest" href="../manifest.json">
+	<link rel="apple-touch-icon" href="../icon.svg">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
@@ -97,7 +99,8 @@
 			<button class="save-button" type="submit">Guardar clienta</button>
 		</form>
 	</main>
-	<div class="toast" id="toast" role="status" aria-live="polite"></div>
+	<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-copy"><strong class="toast-title"></strong><span class="toast-message"></span></span></div>
 	<script src="clientas.js"></script>
+	<script src="../pwa.js"></script>
 </body>
 </html>

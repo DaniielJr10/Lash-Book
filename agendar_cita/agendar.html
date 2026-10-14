@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Nueva cita | Mi Lash Book</title>
+	<link rel="manifest" href="../manifest.json">
+	<link rel="apple-touch-icon" href="../icon.svg">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
@@ -50,11 +52,11 @@
 			<div class="split-fields price-fields">
 				<div class="field-group">
 					<label for="price">Precio</label>
-					<div class="currency-input"><span>$</span><input id="price" name="price" type="number" min="0" step="0.01" placeholder="0"></div>
+					<div class="currency-input"><span>$</span><input id="price" name="price" type="text" inputmode="numeric" placeholder="0" autocomplete="off"></div>
 				</div>
 				<div class="field-group">
 					<label for="deposit">Anticipo</label>
-					<div class="currency-input"><span>$</span><input id="deposit" name="deposit" type="number" min="0" step="0.01" placeholder="0"></div>
+					<div class="currency-input"><span>$</span><input id="deposit" name="deposit" type="text" inputmode="numeric" placeholder="0" autocomplete="off"></div>
 				</div>
 			</div>
 
@@ -66,7 +68,8 @@
 			<button class="submit-button" type="submit">Agendar cita</button>
 		</form>
 	</main>
-	<div class="toast" id="toast" role="status" aria-live="polite"></div>
+	<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-copy"><strong class="toast-title"></strong><span class="toast-message"></span></span></div>
 	<script src="agendar.js"></script>
+	<script src="../pwa.js"></script>
 </body>
 </html>
