@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Nueva cita | Mi Lash Book</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="agendar.css">
+</head>
+<body>
+	<main class="page-shell">
+		<form class="appointment-form" id="appointment-form">
+			<header class="form-header">
+				<h1>Nueva cita</h1>
+				<a class="close-button" href="../inicio.html" aria-label="Cerrar formulario">×</a>
+				<p>Completa los datos principales. Lo demás es opcional.</p>
+			</header>
+
+			<div class="field-group client-field">
+				<label for="client">Clienta</label>
+				<input id="client" name="client" type="text" placeholder="Busca o escribe el nombre" autocomplete="off" required autofocus>
+			</div>
+
+			<div class="field-group">
+				<label for="service">Servicio</label>
+				<select id="service" name="service" required>
+					<option value="" selected disabled>Elige un servicio</option>
+					<option>Volumen 4D</option>
+					<option>Volumen ruso</option>
+					<option>Clásicas</option>
+					<option>Retoque</option>
+				</select>
+			</div>
+
+			<div class="split-fields">
+				<div class="field-group">
+					<label for="date">Fecha</label>
+					<div class="input-with-icon">
+						<input id="date" name="date" type="date" value="2026-10-14" required>
+						<span aria-hidden="true">▣</span>
+					</div>
+				</div>
+				<div class="field-group">
+					<label for="time">Hora</label>
+					<div class="input-with-icon">
+						<input id="time" name="time" type="time" value="09:00" required>
+						<span aria-hidden="true">◷</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="field-group duration-field">
+				<label for="duration">Duración aproximada (minutos)</label>
+				<input id="duration" name="duration" type="number" min="1" placeholder="Ej. 120">
+				<small>Opcional</small>
+			</div>
+
+			<div class="split-fields price-fields">
+				<div class="field-group">
+					<label for="price">Precio</label>
+					<div class="currency-input"><span>$</span><input id="price" name="price" type="number" min="0" step="0.01" placeholder="0"></div>
+				</div>
+				<div class="field-group">
+					<label for="deposit">Anticipo</label>
+					<div class="currency-input"><span>$</span><input id="deposit" name="deposit" type="number" min="0" step="0.01" placeholder="0"></div>
+				</div>
+			</div>
+
+			<div class="field-group notes-field">
+				<label for="notes">Notas</label>
+				<textarea id="notes" name="notes" rows="2" placeholder="Detalles adicionales"></textarea>
+			</div>
+
+			<button class="submit-button" type="submit">Agendar cita</button>
+		</form>
+	</main>
+	<div class="toast" id="toast" role="status" aria-live="polite"></div>
+	<script src="agendar.js"></script>
+</body>
+</html>

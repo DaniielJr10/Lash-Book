@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Clientas | Mi Lash Book</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="clientas.css">
+</head>
+<body>
+	<main class="client-page">
+		<header class="page-header">
+			<a class="back-link" href="../inicio.html" aria-label="Volver al inicio">‹</a>
+			<div>
+				<p class="eyebrow">Mi Lash Book</p>
+				<h1>Clientas</h1>
+			</div>
+			<button class="header-action" type="button" id="save-client">Guardar</button>
+		</header>
+
+		<form id="client-form">
+			<section class="panel client-data-panel" aria-labelledby="client-data-title">
+				<div class="panel-title"><span class="title-icon">♡</span><h2 id="client-data-title">Información de la clienta</h2></div>
+				<div class="field-grid">
+					<label class="wide-field" for="client-name">Nombre completo<input id="client-name" name="client-name" type="text" placeholder="Ej. Ana López" required></label>
+					<label for="client-phone">Teléfono<input id="client-phone" name="client-phone" type="tel" placeholder="Número de teléfono"></label>
+					<label for="client-date">Última cita<input id="client-date" name="client-date" type="date"></label>
+				</div>
+			</section>
+
+			<section class="panel lash-health-panel" aria-labelledby="health-title">
+				<div class="panel-title"><span class="title-icon">✿</span><h2 id="health-title">Salud de pestañas</h2></div>
+				<div class="health-options">
+					<fieldset>
+						<legend>Forma del ojo</legend>
+						<label><input type="radio" name="eye-shape" value="almendrado" checked><span>Almendrado</span></label>
+						<label><input type="radio" name="eye-shape" value="redondo"><span>Redondo</span></label>
+						<label><input type="radio" name="eye-shape" value="asiatico"><span>Asiático</span></label>
+						<label><input type="radio" name="eye-shape" value="caido"><span>Caído</span></label>
+					</fieldset>
+					<fieldset>
+						<legend>Tamaño</legend>
+						<label><input type="radio" name="eye-size" value="pequeno" checked><span>Pequeño</span></label>
+						<label><input type="radio" name="eye-size" value="normal"><span>Normal</span></label>
+						<label><input type="radio" name="eye-size" value="grande"><span>Grande</span></label>
+					</fieldset>
+					<fieldset>
+						<legend>Curvatura natural</legend>
+						<label><input type="radio" name="natural-curl" value="natural" checked><span>Natural</span></label>
+						<label><input type="radio" name="natural-curl" value="normal"><span>Normal</span></label>
+						<label><input type="radio" name="natural-curl" value="hacia-abajo"><span>Hacia abajo</span></label>
+					</fieldset>
+					<fieldset>
+						<legend>Largo natural</legend>
+						<label><input type="radio" name="natural-length" value="cortas"><span>Cortas</span></label>
+						<label><input type="radio" name="natural-length" value="medianas" checked><span>Medianas</span></label>
+						<label><input type="radio" name="natural-length" value="largas"><span>Largas</span></label>
+					</fieldset>
+					<fieldset>
+						<legend>Grosor natural</legend>
+						<label><input type="radio" name="natural-thickness" value="finas"><span>Finas</span></label>
+						<label><input type="radio" name="natural-thickness" value="medio"><span>Medio</span></label>
+						<label><input type="radio" name="natural-thickness" value="gruesas" checked><span>Gruesas</span></label>
+					</fieldset>
+				</div>
+			</section>
+
+			<section class="panel" aria-labelledby="design-title">
+				<div class="panel-title"><span class="title-icon">✦</span><h2 id="design-title">Diseño</h2></div>
+				<div class="field-grid design-grid">
+					<label for="technique">Técnica<input id="technique" name="technique" type="text" placeholder="Ej. Volumen 4D"></label>
+					<label for="length">Largo<input id="length" name="length" type="text" placeholder="Ej. 9-14"></label>
+					<label for="curl">Curvatura<input id="curl" name="curl" type="text" placeholder="Ej. D"></label>
+					<label for="thickness">Grosor<input id="thickness" name="thickness" type="text" placeholder="Ej. 0.07"></label>
+					<label class="wide-field" for="style">Estilo de diseño<input id="style" name="style" type="text" placeholder="Ej. Cat eye"></label>
+				</div>
+			</section>
+
+			<section class="panel mapping-panel" aria-labelledby="mapping-title">
+				<div class="panel-title"><span class="title-icon">◉</span><h2 id="mapping-title">Mapeo de ojos</h2></div>
+				<p class="panel-help">Toca una zona para asignar el largo de las pestañas.</p>
+				<div class="eye-map">
+					<div class="eye-card">
+						<h3>Ojo izquierdo</h3>
+						<div class="eye-shape" data-eye="left" aria-label="Mapa táctil del ojo izquierdo">
+							<svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 39 Q75 -4 142 39 Q75 74 8 39Z"></path><path class="lower-line" d="M15 42 Q75 69 135 42"></path></svg>
+							<button class="map-zone zone-1" type="button" data-zone="1" aria-label="Zona 1"></button><button class="map-zone zone-2" type="button" data-zone="2" aria-label="Zona 2"></button><button class="map-zone zone-3" type="button" data-zone="3" aria-label="Zona 3"></button><button class="map-zone zone-4" type="button" data-zone="4" aria-label="Zona 4"></button><button class="map-zone zone-5" type="button" data-zone="5" aria-label="Zona 5"></button>
+						</div>
+						<p class="selected-zone" data-selected="left">Sin seleccionar</p>
+					</div>
+					<div class="eye-card">
+						<h3>Ojo derecho</h3>
+						<div class="eye-shape" data-eye="right" aria-label="Mapa táctil del ojo derecho">
+							<svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 39 Q75 -4 142 39 Q75 74 8 39Z"></path><path class="lower-line" d="M15 42 Q75 69 135 42"></path></svg>
+							<button class="map-zone zone-1" type="button" data-zone="1" aria-label="Zona 1"></button><button class="map-zone zone-2" type="button" data-zone="2" aria-label="Zona 2"></button><button class="map-zone zone-3" type="button" data-zone="3" aria-label="Zona 3"></button><button class="map-zone zone-4" type="button" data-zone="4" aria-label="Zona 4"></button><button class="map-zone zone-5" type="button" data-zone="5" aria-label="Zona 5"></button>
+						</div>
+						<p class="selected-zone" data-selected="right">Sin seleccionar</p>
+					</div>
+				</div>
+				<button class="clear-map" id="clear-map" type="button">▣ &nbsp; Borrar diseño</button>
+			</section>
+
+			<section class="panel notes-panel" aria-labelledby="notes-title">
+				<div class="panel-title"><span class="title-icon">✎</span><h2 id="notes-title">Notas</h2></div>
+				<textarea id="client-notes" name="client-notes" rows="3" placeholder="Alergias, preferencias o detalles importantes"></textarea>
+			</section>
+			<button class="save-button" type="submit">Guardar clienta</button>
+		</form>
+	</main>
+	<div class="toast" id="toast" role="status" aria-live="polite"></div>
+	<script src="clientas.js"></script>
+</body>
+</html>

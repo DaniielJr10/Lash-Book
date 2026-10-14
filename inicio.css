@@ -1,0 +1,161 @@
+:root {
+	--background: #fbf7f5;
+	--surface: #fffdfc;
+	--blush: #f9e5e8;
+	--border: #efd8da;
+	--ink: #321d2a;
+	--muted: #765b66;
+	--accent: #b25372;
+	--accent-dark: #943d5c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+	margin: 0;
+	min-width: 320px;
+	background: var(--background);
+	color: var(--ink);
+	font-family: "DM Sans", sans-serif;
+	font-size: 14px;
+}
+
+button, a { font: inherit; }
+a { color: inherit; text-decoration: none; }
+
+.dashboard {
+	width: min(100% - 40px, 528px);
+	margin: 18px auto 28px;
+}
+
+.welcome-panel {
+	min-height: 156px;
+	padding: 19px 22px;
+	border-radius: 23px;
+	background: var(--blush);
+}
+
+.date-label, .welcome-message { margin: 0; color: #704c5a; font-size: 11px; }
+.welcome-panel h1 {
+	margin: 4px 0 2px;
+	font-family: "Playfair Display", Georgia, serif;
+	font-size: 30px;
+	font-weight: 500;
+	letter-spacing: -.4px;
+	line-height: 1.15;
+}
+
+.primary-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 13px;
+	padding: 9px 16px;
+	border-radius: 8px;
+	background: var(--accent);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+	transition: background .2s, transform .2s;
+}
+.primary-button:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.button-plus { font-size: 17px; font-weight: 400; line-height: 12px; }
+
+.quick-links {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 9px;
+	margin: 18px 0;
+}
+
+.quick-link {
+	display: flex;
+	min-height: 77px;
+	align-items: center;
+	justify-content: center;
+	gap: 9px;
+	flex-direction: column;
+	border: 1px solid var(--border);
+	border-radius: 19px;
+	background: var(--surface);
+	color: var(--ink);
+	cursor: pointer;
+	font-size: 11px;
+	transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.quick-link:hover { border-color: #d5a8b5; box-shadow: 0 5px 14px #5e26300c; transform: translateY(-2px); }
+.quick-link b { padding-left: 3px; color: #876b76; font-size: 16px; font-weight: 400; vertical-align: -1px; }
+.quick-icon {
+	display: grid;
+	width: 29px;
+	height: 29px;
+	place-items: center;
+	border-radius: 50%;
+	background: #fae7ea;
+	color: #913e5e;
+}
+.quick-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.35; }
+
+.content-section {
+	padding: 16px 15px;
+	border: 1px solid var(--border);
+	border-radius: 20px;
+	background: var(--surface);
+}
+.today-section { margin-bottom: 18px; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; }
+.section-heading h2 {
+	margin: 0;
+	font-family: "Playfair Display", Georgia, serif;
+	font-size: 15px;
+	font-weight: 500;
+}
+.section-heading a { color: var(--accent); font-size: 10px; }
+.empty-state {
+	display: grid;
+	min-height: 53px;
+	margin-top: 13px;
+	place-items: center;
+	border: 1px dashed #ebd2d5;
+	border-radius: 15px;
+	color: #826b74;
+	font-size: 10px;
+}
+.day-label { margin: 13px 0 5px; color: #795e68; font-size: 9px; font-weight: 600; }
+.appointment-card {
+	display: flex;
+	min-height: 70px;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 9px;
+	border: 1px solid var(--border);
+	border-radius: 19px;
+}
+.appointment-time {
+	display: flex;
+	width: 48px;
+	min-height: 51px;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	border-radius: 14px;
+	background: #f9e8eb;
+	color: #482331;
+	line-height: 1.15;
+}
+.appointment-time strong { font-size: 10px; font-weight: 600; }
+.appointment-time span { margin-top: 5px; color: #8f6975; font-size: 8px; }
+.appointment-info { display: flex; flex: 1; flex-direction: column; gap: 5px; font-size: 10px; }
+.appointment-info strong { font-weight: 500; }
+.appointment-info span { color: var(--muted); }
+.status-badge { padding: 4px 9px; border-radius: 10px; background: #dff5e5; color: #32834d; font-size: 8px; }
+.toast { position: fixed; right: 20px; bottom: 20px; display: none; padding: 10px 14px; border-radius: 9px; background: #3c2530; color: #fff; font-size: 11px; box-shadow: 0 6px 20px #3c253033; }
+.toast.is-visible { display: block; animation: toast-in .25s ease-out; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 430px) {
+	.dashboard { width: min(100% - 28px, 528px); margin-top: 14px; }
+	.welcome-panel { padding-inline: 20px; }
+	.quick-links { gap: 7px; }
+	.quick-link { font-size: 10px; }
+}
