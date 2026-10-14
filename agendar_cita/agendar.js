@@ -3,6 +3,11 @@ const toast = document.querySelector('#toast');
 const appointmentId = new URLSearchParams(window.location.search).get('id');
 let toastTimer;
 
+if (!appointmentId) {
+	const now = new Date();
+	document.querySelector('#date').value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+}
+
 const loadAppointment = async () => {
 	if (!appointmentId) return;
 	const appointment = await LashBookStorage.getAppointment(appointmentId);

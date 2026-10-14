@@ -173,6 +173,18 @@ a { color: inherit; text-decoration: none; }
 .edit-button, .delete-button { height: 35px; border-radius: 9px; cursor: pointer; font-size: 11px; font-weight: 600; }
 .edit-button { flex: 1; border: 0; background: var(--accent); color: #fff; }
 .delete-button { padding: 0 14px; border: 1px solid #e5b9c1; background: #fff7f7; color: #a8485a; }
+.confirm-modal[hidden] { display: none; }
+.confirm-modal { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px; }
+.confirm-dialog { position: relative; width: min(100%, 330px); padding: 25px 21px 19px; border-radius: 19px; background: var(--surface); text-align: center; box-shadow: 0 18px 50px #321d2a35; }
+.warning-icon { display: grid; width: 39px; height: 39px; margin: 0 auto 12px; place-items: center; border: 1px solid #f0c5c8; border-radius: 50%; background: #fff0f0; color: #bc5864; font-size: 22px; font-weight: 600; }
+.confirm-dialog h2 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 500; }
+.confirm-dialog p { margin: 8px auto 20px; max-width: 250px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+.confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cancel-button, .confirm-delete-button { height: 35px; border-radius: 9px; cursor: pointer; font-size: 11px; font-weight: 600; }
+.cancel-button { border: 1px solid var(--border); background: #fffafa; color: var(--muted); }
+.confirm-delete-button { border: 0; background: #b65365; color: white; }
+.confirm-delete-button:hover { background: #984454; }
+.confirm-delete-button:disabled { cursor: wait; opacity: .7; }
 .toast { position: fixed; right: 20px; bottom: 20px; display: none; padding: 10px 14px; border-radius: 9px; background: #3c2530; color: #fff; font-size: 11px; box-shadow: 0 6px 20px #3c253033; }
 .toast.is-visible { display: block; animation: toast-in .25s ease-out; }
 @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

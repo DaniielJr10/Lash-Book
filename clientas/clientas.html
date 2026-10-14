@@ -82,24 +82,10 @@
 
 			<section class="panel mapping-panel" aria-labelledby="mapping-title">
 				<div class="panel-title"><span class="title-icon">◉</span><h2 id="mapping-title">Mapeo de ojos</h2></div>
-				<p class="panel-help">Toca una zona para asignar el largo de las pestañas.</p>
+				<p class="panel-help">Dibuja las líneas del diseño con el dedo o el mouse.</p>
 				<div class="eye-map">
-					<div class="eye-card">
-						<h3>Ojo izquierdo</h3>
-						<div class="eye-shape" data-eye="left" aria-label="Mapa táctil del ojo izquierdo">
-							<svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 39 Q75 -4 142 39 Q75 74 8 39Z"></path><path class="lower-line" d="M15 42 Q75 69 135 42"></path></svg>
-							<button class="map-zone zone-1" type="button" data-zone="1" aria-label="Zona 1"></button><button class="map-zone zone-2" type="button" data-zone="2" aria-label="Zona 2"></button><button class="map-zone zone-3" type="button" data-zone="3" aria-label="Zona 3"></button><button class="map-zone zone-4" type="button" data-zone="4" aria-label="Zona 4"></button><button class="map-zone zone-5" type="button" data-zone="5" aria-label="Zona 5"></button>
-						</div>
-						<p class="selected-zone" data-selected="left">Sin seleccionar</p>
-					</div>
-					<div class="eye-card">
-						<h3>Ojo derecho</h3>
-						<div class="eye-shape" data-eye="right" aria-label="Mapa táctil del ojo derecho">
-							<svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 39 Q75 -4 142 39 Q75 74 8 39Z"></path><path class="lower-line" d="M15 42 Q75 69 135 42"></path></svg>
-							<button class="map-zone zone-1" type="button" data-zone="1" aria-label="Zona 1"></button><button class="map-zone zone-2" type="button" data-zone="2" aria-label="Zona 2"></button><button class="map-zone zone-3" type="button" data-zone="3" aria-label="Zona 3"></button><button class="map-zone zone-4" type="button" data-zone="4" aria-label="Zona 4"></button><button class="map-zone zone-5" type="button" data-zone="5" aria-label="Zona 5"></button>
-						</div>
-						<p class="selected-zone" data-selected="right">Sin seleccionar</p>
-					</div>
+					<div class="eye-card"><h3>Ojo izquierdo</h3><div class="eye-shape" aria-label="Mapa táctil del ojo izquierdo"><svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 41 Q75 -9 142 41 Q75 89 8 41Z"></path><path class="lower-line" d="M8 41 Q75 13 142 41"></path></svg><canvas class="eye-canvas" data-eye="left" width="300" height="164" aria-label="Dibujo táctil del ojo izquierdo"></canvas></div><p class="selected-zone" data-selected="left">Sin dibujo</p></div>
+					<div class="eye-card"><h3>Ojo derecho</h3><div class="eye-shape" aria-label="Mapa táctil del ojo derecho"><svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 41 Q75 -9 142 41 Q75 89 8 41Z"></path><path class="lower-line" d="M8 41 Q75 13 142 41"></path></svg><canvas class="eye-canvas" data-eye="right" width="300" height="164" aria-label="Dibujo táctil del ojo derecho"></canvas></div><p class="selected-zone" data-selected="right">Sin dibujo</p></div>
 				</div>
 				<button class="clear-map" id="clear-map" type="button">▣ &nbsp; Borrar diseño</button>
 			</section>

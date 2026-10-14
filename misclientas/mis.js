@@ -16,7 +16,7 @@ const renderClients = (clients) => {
 	clients.forEach((client) => {
 		const card = document.createElement('a');
 		card.className = 'client-card';
-		card.href = `../clientas/clientas.html?id=${encodeURIComponent(client.id)}`;
+		card.href = `detalle.html?id=${encodeURIComponent(client.id)}`;
 		const avatar = document.createElement('span');
 		avatar.className = 'client-avatar';
 		avatar.textContent = client.name.trim().charAt(0).toUpperCase();

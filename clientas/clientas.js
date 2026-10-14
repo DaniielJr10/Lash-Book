@@ -1,28 +1,52 @@
 const form = document.querySelector('#client-form');
 const toast = document.querySelector('#toast');
-const mapZones = document.querySelectorAll('.map-zone');
 const selectedLabels = document.querySelectorAll('.selected-zone');
 const clearMap = document.querySelector('#clear-map');
 const clientId = new URLSearchParams(window.location.search).get('id');
+const canvases = document.querySelectorAll('.eye-canvas');
+const drawings = { left: [], right: [] };
 let toastTimer;
 
-const getMapValue = (eye) => {
-		const selectedZone = document.querySelector(`[data-eye="${eye}"] .map-zone.active`);
-		return selectedZone ? selectedZone.dataset.zone : '';
+const redrawCanvas = (canvas, strokes) => {
+	const context = canvas.getContext('2d');
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.strokeStyle = '#c54f7c';
+	context.lineWidth = 2.2;
+	context.lineCap = 'round';
+	context.lineJoin = 'round';
+	strokes.forEach((stroke) => {
+		if (stroke.length < 2) return;
+		context.beginPath();
+		context.moveTo(stroke[0].x * canvas.width, stroke[0].y * canvas.height);
+		stroke.slice(1).forEach((point) => context.lineTo(point.x * canvas.width, point.y * canvas.height));
+		context.stroke();
+	});
 };
 
-mapZones.forEach((zone) => {
-	zone.addEventListener('click', () => {
-		const eye = zone.closest('.eye-shape').dataset.eye;
-		zone.closest('.eye-shape').querySelectorAll('.map-zone').forEach((item) => item.classList.remove('active'));
-		zone.classList.add('active');
-		document.querySelector(`[data-selected="${eye}"]`).textContent = `Zona ${zone.dataset.zone} seleccionada`;
+canvases.forEach((canvas) => {
+	const eye = canvas.dataset.eye;
+	let currentStroke = null;
+	canvas.addEventListener('pointerdown', (event) => {
+		canvas.setPointerCapture(event.pointerId);
+		canvas.classList.add('is-drawing');
+		const bounds = canvas.getBoundingClientRect();
+		currentStroke = [{ x: (event.clientX - bounds.left) / bounds.width, y: (event.clientY - bounds.top) / bounds.height }];
+		drawings[eye].push(currentStroke);
 	});
+	canvas.addEventListener('pointermove', (event) => {
+		if (!currentStroke) return;
+		const bounds = canvas.getBoundingClientRect();
+		currentStroke.push({ x: (event.clientX - bounds.left) / bounds.width, y: (event.clientY - bounds.top) / bounds.height });
+		redrawCanvas(canvas, drawings[eye]);
+	});
+	const stopDrawing = () => { currentStroke = null; canvas.classList.remove('is-drawing'); document.querySelector(`[data-selected="${eye}"]`).textContent = drawings[eye].length ? 'Dibujo listo para guardar' : 'Sin dibujo'; };
+	canvas.addEventListener('pointerup', stopDrawing);
+	canvas.addEventListener('pointercancel', stopDrawing);
 });
 
 clearMap.addEventListener('click', () => {
-	mapZones.forEach((zone) => zone.classList.remove('active'));
-	selectedLabels.forEach((label) => { label.textContent = 'Sin seleccionar'; });
+	canvases.forEach((canvas) => { drawings[canvas.dataset.eye] = []; redrawCanvas(canvas, []); });
+	selectedLabels.forEach((label) => { label.textContent = 'Sin dibujo'; });
 });
 
 const setRadioValue = (name, value) => {
@@ -53,11 +77,11 @@ const loadClient = async () => {
 	setRadioValue('natural-length', health.naturalLength);
 	setRadioValue('natural-thickness', health.naturalThickness);
 	['left', 'right'].forEach((eye) => {
-		const zone = document.querySelector(`[data-eye="${eye}"] .map-zone[data-zone="${map[eye]}"]`);
-		if (zone) {
-			zone.classList.add('active');
-			document.querySelector(`[data-selected="${eye}"]`).textContent = `Zona ${map[eye]} seleccionada`;
-		}
+		const savedDrawing = Array.isArray(map[eye]) ? map[eye] : [];
+		drawings[eye].push(...savedDrawing);
+		const canvas = document.querySelector(`.eye-canvas[data-eye="${eye}"]`);
+		redrawCanvas(canvas, drawings[eye]);
+		if (savedDrawing.length || (typeof map[eye] === 'string' && map[eye])) document.querySelector(`[data-selected="${eye}"]`).textContent = 'Dibujo guardado';
 	});
 };
 
@@ -89,7 +113,7 @@ form.addEventListener('submit', async (event) => {
 			thickness: formData.get('thickness').trim(),
 			style: formData.get('style').trim()
 		},
-		map: { left: getMapValue('left'), right: getMapValue('right') },
+		map: { left: drawings.left, right: drawings.right },
 		notes: formData.get('client-notes').trim()
 	});
 	toast.textContent = 'Clienta guardada correctamente.';

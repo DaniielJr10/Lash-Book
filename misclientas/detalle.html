@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ficha de clienta | Mi Lash Book</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="detalle.css">
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script src="../storage.js"></script>
+</head>
+<body>
+	<main class="detail-page">
+		<header class="page-header">
+			<a class="back-link" href="mis.html" aria-label="Volver a mis clientas">‹</a>
+			<div><p class="eyebrow">Mi Lash Book</p><h1>Ficha de clienta</h1></div>
+			<div class="header-actions"><a class="edit-link" id="edit-client" href="#">Editar</a><button class="delete-link" id="delete-client" type="button">Eliminar</button></div>
+		</header>
+
+		<div id="loading" class="loading-state">Cargando ficha...</div>
+		<section id="client-content" hidden>
+			<section class="profile-card">
+				<div class="profile-avatar" id="client-avatar"></div>
+				<div><p class="eyebrow">Información de la clienta</p><h2 id="client-name"></h2><p id="client-contact"></p><p id="client-last-appointment"></p></div>
+			</section>
+			<section class="info-card"><div class="card-heading"><span class="section-icon">✿</span><h2>Salud de pestañas</h2></div><div class="value-grid" id="health-values"></div></section>
+			<section class="info-card"><div class="card-heading"><span class="section-icon">✦</span><h2>Diseño</h2></div><div class="value-grid" id="design-values"></div></section>
+			<section class="info-card"><div class="card-heading"><span class="section-icon">◉</span><h2>Mapeo de ojos</h2></div><div class="saved-map-grid"><div><span>Ojo izquierdo</span><div class="saved-eye"><svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 41 Q75 -9 142 41 Q75 89 8 41Z"></path><path class="lower-line" d="M8 41 Q75 13 142 41"></path></svg><canvas id="left-map-canvas" width="300" height="164"></canvas></div><strong id="left-map"></strong></div><div><span>Ojo derecho</span><div class="saved-eye"><svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 41 Q75 -9 142 41 Q75 89 8 41Z"></path><path class="lower-line" d="M8 41 Q75 13 142 41"></path></svg><canvas id="right-map-canvas" width="300" height="164"></canvas></div><strong id="right-map"></strong></div></div></section>
+			<section class="info-card notes-card"><div class="card-heading"><span class="section-icon">✎</span><h2>Notas</h2></div><p id="client-notes"></p></section>
+		</section>
+		<div id="error-state" class="loading-state" hidden>No se pudo cargar la información de la clienta.</div>
+	</main>
+	<div class="confirm-modal" id="delete-modal" hidden><div class="modal-backdrop" data-close-delete></div><article class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="delete-title"><div class="warning-icon">!</div><h2 id="delete-title">¿Eliminar clienta?</h2><p id="delete-message">Esta acción eliminará toda la información guardada.</p><div class="confirm-actions"><button class="cancel-button" id="cancel-delete" type="button">Cancelar</button><button class="confirm-delete-button" id="confirm-delete" type="button">Eliminar</button></div></article></div>
+	<script src="detalle.js"></script>
+</body>
+</html>

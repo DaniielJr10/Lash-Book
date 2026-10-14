@@ -41,10 +41,12 @@ input:focus, select:focus, textarea:focus { border-color: #db9db4; box-shadow: 0
 .eye-map { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .eye-card { min-width: 0; }
 .eye-card h3 { margin: 0 0 5px; color: var(--pink); font-size: 9px; font-weight: 500; text-align: center; }
-.eye-shape { position: relative; height: 84px; overflow: hidden; border: 1px solid #e9bad0; border-radius: 9px; background: #fff9fb; touch-action: manipulation; }
+.eye-shape { position: relative; height: 84px; overflow: hidden; border: 1px solid #e9bad0; border-radius: 9px; background: #fff9fb; touch-action: none; }
 .eye-shape svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .eye-line, .lower-line { fill: none; stroke: #e7a8c2; stroke-width: 1.2; }
 .lower-line { opacity: .65; }
+.eye-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: none; }
+.eye-canvas.is-drawing { cursor: grabbing; }
 .map-zone { position: absolute; top: 8px; width: 19%; height: 47px; border: 0; border-left: 2px solid transparent; border-radius: 50%; background: transparent; cursor: pointer; transform: rotate(8deg); }
 .map-zone:hover, .map-zone.active { border-left-color: var(--pink); background: #f8c7d844; }
 .zone-1 { left: 7%; transform: rotate(-16deg); }.zone-2 { left: 26%; transform: rotate(-8deg); }.zone-3 { left: 43%; transform: rotate(0); }.zone-4 { left: 60%; transform: rotate(8deg); }.zone-5 { left: 77%; transform: rotate(16deg); }
