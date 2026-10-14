@@ -8,7 +8,7 @@ let client = null;
 const valueOrDash = (value) => value || 'Sin registrar';
 const drawSavedMap = (canvas, strokes) => {
 	const context = canvas.getContext('2d');
-	context.strokeStyle = '#c54f7c';
+	context.strokeStyle = '#FF5D8F';
 	context.lineWidth = 2.2;
 	context.lineCap = 'round';
 	context.lineJoin = 'round';

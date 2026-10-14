@@ -12,7 +12,7 @@ let toastTimer;
 const redrawCanvas = (canvas, strokes) => {
 	const context = canvas.getContext('2d');
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	context.strokeStyle = '#c54f7c';
+	context.strokeStyle = '#FF5D8F';
 	context.lineWidth = 2.2;
 	context.lineCap = 'round';
 	context.lineJoin = 'round';
