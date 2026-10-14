@@ -29,20 +29,24 @@ a { color: inherit; text-decoration: none; }
 }
 
 .welcome-panel {
-	min-height: 156px;
-	padding: 19px 22px;
+	min-height: 190px;
+	padding: 24px 26px;
 	border-radius: 23px;
 	background: var(--blush);
 }
 
-.date-label, .welcome-message { margin: 0; color: #704c5a; font-size: 14px; }
+.date-label { margin: 0 0 12px; color: #704c5a; font-size: 14px; }
+.welcome-message { margin: 14px 0 0; color: #704c5a; font-size: 15px; }
 .welcome-panel h1 {
-	margin: 4px 0 2px;
-	font-family: "Playfair Display", Georgia, serif;
-	font-size: 39px;
-	font-weight: 500;
-	letter-spacing: -.4px;
-	line-height: 1.15;
+	margin: 6px 0 10px;
+	font-family: "Great Vibes", "Playfair Display", Georgia, cursive;
+	font-size: 54px;
+	font-weight: 400;
+	line-height: 1.05;
+	color: #FF5D8F;
+	-webkit-text-stroke: 1.5px rgba(45, 26, 38, 0.55);
+	paint-order: stroke fill;
+	text-shadow: 0 3px 12px rgba(255, 93, 143, 0.28);
 }
 
 .primary-button {
