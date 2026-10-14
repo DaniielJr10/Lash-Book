@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mis clientas | Mi Lash Book</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="mis.css">
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script src="../storage.js"></script>
+</head>
+<body>
+	<main class="clients-page">
+		<header class="page-header">
+			<a class="back-link" href="../inicio.html" aria-label="Volver al inicio">‹</a>
+			<div>
+				<p class="eyebrow">Mi Lash Book</p>
+				<h1>Mis clientas</h1>
+			</div>
+				<a class="create-link" href="../clientas/clientas.html">+ Crear clienta</a>
+		</header>
+
+			<section class="client-list-section" aria-labelledby="list-title">
+				<div class="section-heading">
+					<div>
+						<p class="eyebrow">Fichas guardadas</p>
+						<h2 id="list-title">Todas tus clientas</h2>
+					</div>
+					<span class="client-count" id="client-count">0</span>
+				</div>
+				<div class="client-list" id="client-list-items" aria-live="polite">
+					<div class="empty-state" id="empty-state">Todavía no tienes clientas guardadas.</div>
+				</div>
+			</section>
+	</main>
+		<script src="mis.js"></script>
+</body>
+</html>

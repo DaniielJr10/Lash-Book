@@ -8,6 +8,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="inicio.css">
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script src="storage.js"></script>
 </head>
 <body>
 	<main class="dashboard" aria-label="Pantalla principal de Mi Lash Book">
@@ -28,7 +30,7 @@
 				</span>
 				<span>Agenda <b aria-hidden="true">›</b></span>
 			</a>
-			<a class="quick-link" href="clientas/clientas.html">
+			<a class="quick-link" href="misclientas/mis.html">
 				<span class="quick-icon" aria-hidden="true">
 					<svg viewBox="0 0 24 24" role="img"><circle cx="12" cy="8" r="3"></circle><path d="M6 20c0-3.3 2.7-5 6-5s6 1.7 6 5M4 12a2.5 2.5 0 1 0 0 5M20 12a2.5 2.5 0 1 1 0 5"></path></svg>
 				</span>
@@ -55,7 +57,7 @@
 				<h2 id="upcoming-title">Próximas citas</h2>
 				<a href="agendar_cita/agendar.html">Ver agenda</a>
 			</div>
-			<div class="empty-state">Aún no tienes citas próximas.</div>
+			<div class="empty-state" id="upcoming-state">Aún no tienes citas próximas.</div>
 		</section>
 	</main>
 	<div class="toast" id="toast" role="status" aria-live="polite"></div>
