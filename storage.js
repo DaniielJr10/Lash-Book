@@ -16,7 +16,7 @@ const LashBookStorage = (() => {
 			if (!remote) return readLocal(clientsKey);
 			const { data, error } = await remote.from('clientas').select('*').order('created_at', { ascending: false });
 			if (error) throw error;
-			return data.map((client) => ({ ...client, name: client.nombre, phone: client.telefono, lastAppointment: client.ultima_cita, health: client.salud, design: client.diseno, map: client.mapeo }));
+			return data.map((client) => ({ ...client, name: client.nombre, phone: client.telefono, lastAppointment: client.ultima_cita, health: client.salud, design: client.diseno, map: client.mapeo, notes: client.notas }));
 		},
 		async getClient(id) {
 			if (!id) return null;
@@ -45,11 +45,19 @@ const LashBookStorage = (() => {
 		},
 		async deleteClient(id) {
 			if (!remote) {
-				writeLocal(clientsKey, readLocal(clientsKey).filter((client) => client.id !== id));
+				const client = readLocal(clientsKey).find((item) => item.id === id);
+				writeLocal(clientsKey, readLocal(clientsKey).filter((item) => item.id !== id));
+				if (client) writeLocal(appointmentsKey, readLocal(appointmentsKey).filter((item) => item.client !== client.name));
 				return;
 			}
-			const { error } = await remote.from('clientas').delete().eq('id', id);
-			if (error) throw error;
+			const client = await this.getClient(id);
+			if (!client) return;
+			const { error: linkedAppointmentsError } = await remote.from('citas').delete().eq('clienta_id', id);
+			if (linkedAppointmentsError) throw linkedAppointmentsError;
+			const { error: legacyAppointmentsError } = await remote.from('citas').delete().eq('clienta_nombre', client.name);
+			if (legacyAppointmentsError) throw legacyAppointmentsError;
+			const { error: clientError } = await remote.from('clientas').delete().eq('id', id);
+			if (clientError) throw clientError;
 		},
 		async getAppointments() {
 			if (!remote) return readLocal(appointmentsKey);
@@ -74,7 +82,13 @@ const LashBookStorage = (() => {
 				writeLocal(appointmentsKey, appointments);
 				return savedAppointment;
 			}
-		const values = { clienta_nombre: appointment.client, servicio: appointment.service, fecha: appointment.date, hora: appointment.time, duracion: null, precio: appointment.price || null, anticipo: appointment.deposit || null, notas: appointment.notes || null };
+		let clientaId = appointment.clientId || null;
+		if (!clientaId) {
+			const { data: matchingClient, error: clientLookupError } = await remote.from('clientas').select('id').eq('nombre', appointment.client).limit(1).maybeSingle();
+			if (clientLookupError) throw clientLookupError;
+			clientaId = matchingClient?.id || null;
+		}
+		const values = { clienta_id: clientaId, clienta_nombre: appointment.client, servicio: appointment.service, fecha: appointment.date, hora: appointment.time, duracion: null, precio: appointment.price || null, anticipo: appointment.deposit || null, notas: appointment.notes || null };
 		const request = appointment.id
 			? remote.from('citas').update(values).eq('id', appointment.id)
 			: remote.from('citas').insert(values);
