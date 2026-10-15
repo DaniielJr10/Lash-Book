@@ -121,7 +121,6 @@ const renderFinanceOverview = () => {
 	const totalIncome = incomeAppointments.reduce((total, appointment) => total + (Number(appointment.price) || 0), 0);
 
 	document.querySelector('#total-income').textContent = formatAmount(totalIncome);
-	document.querySelector('#total-appointments').textContent = selectedAppointments.length;
 	recordCount.textContent = selectedAppointments.length;
 	historyTitle.textContent = getCurrentRangeLabel();
 
