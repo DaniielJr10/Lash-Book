@@ -167,7 +167,7 @@ document.querySelector('#edit-appointment').addEventListener('click', () => {
 
 document.querySelector('#delete-appointment').addEventListener('click', () => {
 	if (!selectedAppointment) return;
-	document.querySelector('#delete-message').textContent = `La cita de ${selectedAppointment.client} se eliminará de tu agenda.`;
+	document.querySelector('#delete-message').textContent = `La cita de ${selectedAppointment.client} se eliminará para siempre de agenda e historial.`;
 	deleteModal.hidden = false;
 });
 
@@ -193,7 +193,7 @@ document.querySelector('#confirm-delete').addEventListener('click', async () => 
 	}
 });
 
-LashBookStorage.getAppointments().then((appointments) => {
+LashBookStorage.getAppointments({ includeHidden: true }).then((appointments) => {
 	allAppointments = appointments;
 	setDefaultPeriodValues();
 	renderFinanceOverview();

@@ -78,7 +78,7 @@ document.querySelector('#confirm-delete').addEventListener('click', async () => 
 	button.disabled = true;
 	button.textContent = 'Borrando...';
 	try {
-		await LashBookStorage.deleteAppointment(selectedAppointment.id);
+		await LashBookStorage.removeAppointmentFromAgenda(selectedAppointment.id);
 		deleteModal.hidden = true;
 		modal.hidden = true;
 		window.location.reload();
@@ -97,4 +97,3 @@ LashBookStorage.getAppointments().then((appointments) => {
 	if (todayAppointments.length) { todayState.remove(); todayAppointments.forEach((appointment) => todayList.append(createAppointmentCard(appointment))); }
 	if (upcomingAppointments.length) { upcomingState.remove(); upcomingAppointments.forEach((appointment) => upcomingList.append(createAppointmentCard(appointment))); }
 }).catch(() => { upcomingState.textContent = 'No se pudieron cargar las citas.'; });
-

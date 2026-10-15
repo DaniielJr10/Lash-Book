@@ -1,6 +1,7 @@
 const LashBookStorage = (() => {
 	const clientsKey = 'lash-book-clients';
 	const appointmentsKey = 'lash-book-appointments';
+	const hiddenAppointmentsKey = 'lash-book-hidden-appointments';
 	const supabaseUrl = 'https://oyeqsofuddradawezsil.supabase.co';
 	const supabaseKey = 'sb_publishable_4bGgC8_LnGQ97ebYCUGYrw_8Qxr1LAf';
 	const remote = window.supabase?.createClient(supabaseUrl, supabaseKey);
@@ -9,6 +10,17 @@ const LashBookStorage = (() => {
 		try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; }
 	};
 	const writeLocal = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+	const readHiddenAppointmentIds = () => readLocal(hiddenAppointmentsKey).filter(Boolean);
+	const isAppointmentHidden = (id) => readHiddenAppointmentIds().includes(id);
+	const hideAppointment = (id) => {
+		if (!id) return;
+		const hiddenIds = readHiddenAppointmentIds();
+		if (!hiddenIds.includes(id)) writeLocal(hiddenAppointmentsKey, [...hiddenIds, id]);
+	};
+	const unhideAppointment = (id) => {
+		if (!id) return;
+		writeLocal(hiddenAppointmentsKey, readHiddenAppointmentIds().filter((hiddenId) => hiddenId !== id));
+	};
 	const createId = () => window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
 	return {
@@ -59,11 +71,18 @@ const LashBookStorage = (() => {
 			const { error: clientError } = await remote.from('clientas').delete().eq('id', id);
 			if (clientError) throw clientError;
 		},
-		async getAppointments() {
-			if (!remote) return readLocal(appointmentsKey);
+		async getAppointments(options = {}) {
+			const includeHidden = options && options.includeHidden === true;
+			if (!remote) {
+				const appointments = readLocal(appointmentsKey);
+				if (includeHidden) return appointments;
+				return appointments.filter((appointment) => !isAppointmentHidden(appointment.id));
+			}
 			const { data, error } = await remote.from('citas').select('*').order('fecha', { ascending: true }).order('hora', { ascending: true });
 			if (error) throw error;
-			return data.map((appointment) => ({ ...appointment, client: appointment.clienta_nombre, service: appointment.servicio, date: appointment.fecha, time: appointment.hora, price: appointment.precio, notes: appointment.notas }));
+			const appointments = data.map((appointment) => ({ ...appointment, client: appointment.clienta_nombre, service: appointment.servicio, date: appointment.fecha, time: appointment.hora, price: appointment.precio, notes: appointment.notas }));
+			if (includeHidden) return appointments;
+			return appointments.filter((appointment) => !isAppointmentHidden(appointment.id));
 		},
 		async getAppointment(id) {
 			if (!id) return null;
@@ -76,13 +95,13 @@ const LashBookStorage = (() => {
 			if (!appointment.date || !appointment.time) return false;
 			const normalizedTime = appointment.time.length === 5 ? `${appointment.time}:00` : appointment.time;
 			if (!remote) {
-				return readLocal(appointmentsKey).some((item) => item.date === appointment.date && item.time.slice(0, 5) === normalizedTime.slice(0, 5) && item.id !== appointment.id);
+				return readLocal(appointmentsKey).some((item) => item.date === appointment.date && item.time.slice(0, 5) === normalizedTime.slice(0, 5) && item.id !== appointment.id && !isAppointmentHidden(item.id));
 			}
 		let request = remote.from('citas').select('id').eq('fecha', appointment.date).eq('hora', normalizedTime);
 			if (appointment.id) request = request.neq('id', appointment.id);
 			const { data, error } = await request;
 			if (error) throw error;
-			return data.length > 0;
+			return data.some((item) => !isAppointmentHidden(item.id));
 		},
 		async saveAppointment(appointment) {
 			if (!remote) {
@@ -108,7 +127,11 @@ const LashBookStorage = (() => {
 			if (error) throw error;
 			return data;
 		},
+		async removeAppointmentFromAgenda(id) {
+			hideAppointment(id);
+		},
 		async deleteAppointment(id) {
+			unhideAppointment(id);
 			if (!remote) {
 				writeLocal(appointmentsKey, readLocal(appointmentsKey).filter((appointment) => appointment.id !== id));
 				return;
