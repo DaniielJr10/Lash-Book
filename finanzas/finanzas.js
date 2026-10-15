@@ -161,7 +161,8 @@ document.querySelectorAll('[data-close-modal]').forEach((element) => {
 
 document.querySelector('#edit-appointment').addEventListener('click', () => {
 	if (!selectedAppointment) return;
-	window.location.href = `../agendar_cita/agendar.html?id=${encodeURIComponent(selectedAppointment.id)}`;
+	const returnTo = encodeURIComponent('../finanzas/finanzas.html');
+	window.location.href = `../agendar_cita/agendar.html?id=${encodeURIComponent(selectedAppointment.id)}&returnTo=${returnTo}`;
 });
 
 document.querySelector('#delete-appointment').addEventListener('click', () => {

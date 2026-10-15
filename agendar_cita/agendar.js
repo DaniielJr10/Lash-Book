@@ -2,7 +2,12 @@ const form = document.querySelector('#appointment-form');
 const toast = document.querySelector('#toast');
 const toastTitle = toast.querySelector('.toast-title');
 const toastMessage = toast.querySelector('.toast-message');
-const appointmentId = new URLSearchParams(window.location.search).get('id');
+const searchParams = new URLSearchParams(window.location.search);
+const appointmentId = searchParams.get('id');
+const returnToParam = searchParams.get('returnTo');
+const allowedReturnTargets = new Set(['../finanzas/finanzas.html']);
+const returnTo = allowedReturnTargets.has(returnToParam) ? returnToParam : null;
+const redirectAfterSave = appointmentId ? (returnTo || '../inicio.html') : '../inicio.html';
 let toastTimer;
 
 const formatAmount = (value) => {
@@ -32,6 +37,9 @@ const loadAppointment = async () => {
 	document.querySelector('#notes').value = appointment.notes || '';
 	document.querySelector('.form-header h1').textContent = 'Editar cita';
 	document.querySelector('.submit-button').textContent = 'Guardar cambios';
+	if (returnTo) {
+		document.querySelector('.close-button').setAttribute('href', returnTo);
+	}
 };
 
 loadAppointment().catch(() => {
@@ -80,6 +88,6 @@ form.addEventListener('submit', async (event) => {
 	toast.classList.add('is-visible');
 	clearTimeout(toastTimer);
 	toastTimer = setTimeout(() => {
-		window.location.href = '../inicio.html';
+		window.location.href = redirectAfterSave;
 	}, 1200);
 });
