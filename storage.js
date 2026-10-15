@@ -63,14 +63,14 @@ const LashBookStorage = (() => {
 			if (!remote) return readLocal(appointmentsKey);
 			const { data, error } = await remote.from('citas').select('*').order('fecha', { ascending: true }).order('hora', { ascending: true });
 			if (error) throw error;
-			return data.map((appointment) => ({ ...appointment, client: appointment.clienta_nombre, service: appointment.servicio, date: appointment.fecha, time: appointment.hora, price: appointment.precio, deposit: appointment.anticipo, notes: appointment.notas }));
+			return data.map((appointment) => ({ ...appointment, client: appointment.clienta_nombre, service: appointment.servicio, date: appointment.fecha, time: appointment.hora, price: appointment.precio, notes: appointment.notas }));
 		},
 		async getAppointment(id) {
 			if (!id) return null;
 			if (!remote) return readLocal(appointmentsKey).find((appointment) => appointment.id === id) || null;
 			const { data, error } = await remote.from('citas').select('*').eq('id', id).single();
 			if (error) throw error;
-			return { ...data, client: data.clienta_nombre, service: data.servicio, date: data.fecha, time: data.hora, price: data.precio, deposit: data.anticipo, notes: data.notas };
+			return { ...data, client: data.clienta_nombre, service: data.servicio, date: data.fecha, time: data.hora, price: data.precio, notes: data.notas };
 		},
 		async hasAppointmentConflict(appointment) {
 			if (!appointment.date || !appointment.time) return false;
@@ -100,7 +100,7 @@ const LashBookStorage = (() => {
 			if (clientLookupError) throw clientLookupError;
 			clientaId = matchingClient?.id || null;
 		}
-		const values = { clienta_id: clientaId, clienta_nombre: appointment.client, servicio: appointment.service, fecha: appointment.date, hora: appointment.time, duracion: null, precio: appointment.price || null, anticipo: appointment.deposit || null, notas: appointment.notes || null };
+		const values = { clienta_id: clientaId, clienta_nombre: appointment.client, servicio: appointment.service, fecha: appointment.date, hora: appointment.time, duracion: null, precio: appointment.price || null, notas: appointment.notes || null };
 		const request = appointment.id
 			? remote.from('citas').update(values).eq('id', appointment.id)
 			: remote.from('citas').insert(values);

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lash-book-static-v1';
+const CACHE_NAME = 'lash-book-static-v3';
 const APP_SHELL = [
   './inicio.html',
   './inicio.css',
@@ -21,7 +21,10 @@ const APP_SHELL = [
   './misclientas/detalle.js',
   './misclientas/lista.html',
   './misclientas/lista.css',
-  './misclientas/lista.js'
+  './misclientas/lista.js',
+  './finanzas/finanzas.html',
+  './finanzas/finanzas.css',
+  './finanzas/finanzas.js'
 ];
 
 self.addEventListener('install', (event) => {

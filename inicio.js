@@ -53,7 +53,6 @@ const openAppointmentDetail = (appointment) => {
 	document.querySelector('#detail-client').textContent = appointment.client;
 	document.querySelector('#detail-service').textContent = appointment.service;
 	document.querySelector('#detail-price').textContent = formatAmount(appointment.price);
-	document.querySelector('#detail-deposit').textContent = formatAmount(appointment.deposit);
 	document.querySelector('#detail-notes').textContent = appointment.notes || 'Sin notas adicionales.';
 	modal.hidden = false;
 };

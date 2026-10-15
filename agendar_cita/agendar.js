@@ -10,7 +10,7 @@ const formatAmount = (value) => {
 	return digits ? Number(digits).toLocaleString('es-CO') : '';
 };
 const cleanAmount = (value) => String(value || '').replace(/\D/g, '');
-['price', 'deposit'].forEach((fieldId) => {
+['price'].forEach((fieldId) => {
 	const field = document.querySelector(`#${fieldId}`);
 	field.addEventListener('input', () => { field.value = formatAmount(field.value); });
 });
@@ -29,7 +29,6 @@ const loadAppointment = async () => {
 	document.querySelector('#date').value = appointment.date || '';
 	document.querySelector('#time').value = appointment.time ? appointment.time.slice(0, 5) : '';
 	document.querySelector('#price').value = formatAmount(appointment.price);
-	document.querySelector('#deposit').value = formatAmount(appointment.deposit);
 	document.querySelector('#notes').value = appointment.notes || '';
 	document.querySelector('.form-header h1').textContent = 'Editar cita';
 	document.querySelector('.submit-button').textContent = 'Guardar cambios';
@@ -52,7 +51,6 @@ form.addEventListener('submit', async (event) => {
 		date: formData.get('date'),
 		time: formData.get('time'),
 		price: cleanAmount(formData.get('price')),
-		deposit: cleanAmount(formData.get('deposit')),
 		notes: formData.get('notes')
 	};
 	const saveButton = document.querySelector('.submit-button');
