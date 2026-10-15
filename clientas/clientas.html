@@ -28,8 +28,8 @@
 			<section class="panel client-data-panel" aria-labelledby="client-data-title">
 				<div class="panel-title"><span class="title-icon">♡</span><h2 id="client-data-title">Información de la clienta</h2></div>
 				<div class="field-grid">
-					<label class="wide-field" for="client-name">Nombre completo<input id="client-name" name="client-name" type="text" placeholder="Ej. Ana López" required></label>
-					<label for="client-phone">Teléfono<input id="client-phone" name="client-phone" type="tel" placeholder="Número de teléfono"></label>
+					<label class="wide-field" for="client-name">Nombre completo<input id="client-name" name="client-name" type="text" required></label>
+					<label for="client-phone">Teléfono<input id="client-phone" name="client-phone" type="tel"></label>
 					<label for="client-date">Última cita<input id="client-date" name="client-date" type="date"></label>
 				</div>
 			</section>
@@ -74,17 +74,17 @@
 			<section class="panel" aria-labelledby="design-title">
 				<div class="panel-title"><span class="title-icon">✦</span><h2 id="design-title">Diseño</h2></div>
 				<div class="field-grid design-grid">
-					<label for="technique">Técnica<input id="technique" name="technique" type="text" placeholder="Ej. Volumen 4D"></label>
-					<label for="length">Largo<input id="length" name="length" type="text" placeholder="Ej. 9-14"></label>
-					<label for="curl">Curvatura<input id="curl" name="curl" type="text" placeholder="Ej. D"></label>
-					<label for="thickness">Grosor<input id="thickness" name="thickness" type="text" placeholder="Ej. 0.07"></label>
-					<label class="wide-field" for="style">Estilo de diseño<input id="style" name="style" type="text" placeholder="Ej. Cat eye"></label>
+					<label for="technique">Técnica<input id="technique" name="technique" type="text"></label>
+					<label for="length">Largo<input id="length" name="length" type="text"></label>
+					<label for="curl">Curvatura<input id="curl" name="curl" type="text"></label>
+					<label for="thickness">Grosor<input id="thickness" name="thickness" type="text"></label>
+					<label class="wide-field" for="style">Estilo de diseño<input id="style" name="style" type="text"></label>
 				</div>
 			</section>
 
 			<section class="panel mapping-panel" aria-labelledby="mapping-title">
 				<div class="panel-title"><span class="title-icon">◉</span><h2 id="mapping-title">Mapeo de ojos</h2></div>
-				<p class="panel-help">Dibuja las líneas del diseño con el dedo o el mouse.</p>
+				<p class="panel-help">Dibuja las líneas del diseño con el dedo</p>
 				<div class="eye-map">
 					<div class="eye-card"><h3>Ojo izquierdo</h3><div class="eye-shape" aria-label="Mapa táctil del ojo izquierdo"><svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 41 Q75 -9 142 41 Q75 89 8 41Z"></path><path class="lower-line" d="M8 41 Q75 13 142 41"></path></svg><canvas class="eye-canvas" data-eye="left" width="300" height="164" aria-label="Dibujo táctil del ojo izquierdo"></canvas></div><p class="selected-zone" data-selected="left">Sin dibujo</p></div>
 					<div class="eye-card"><h3>Ojo derecho</h3><div class="eye-shape" aria-label="Mapa táctil del ojo derecho"><svg viewBox="0 0 150 82" aria-hidden="true"><path class="eye-line" d="M8 41 Q75 -9 142 41 Q75 89 8 41Z"></path><path class="lower-line" d="M8 41 Q75 13 142 41"></path></svg><canvas class="eye-canvas" data-eye="right" width="300" height="164" aria-label="Dibujo táctil del ojo derecho"></canvas></div><p class="selected-zone" data-selected="right">Sin dibujo</p></div>
@@ -94,7 +94,7 @@
 
 			<section class="panel notes-panel" aria-labelledby="notes-title">
 				<div class="panel-title"><span class="title-icon">✎</span><h2 id="notes-title">Notas</h2></div>
-				<textarea id="client-notes" name="client-notes" rows="3" placeholder="Alergias, preferencias o detalles importantes"></textarea>
+				<textarea id="client-notes" name="client-notes" rows="3"></textarea>
 			</section>
 			<button class="save-button" type="submit">Guardar clienta</button>
 		</form>
