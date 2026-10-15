@@ -17,7 +17,23 @@ document.querySelector('#current-date').textContent = now.toLocaleDateString('es
 }).replace(/^./, (letter) => letter.toUpperCase());
 
 const formatDate = (date) => new Date(`${date}T12:00:00`).toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-const formatTime = (time) => time ? new Date(`1970-01-01T${time}`).toLocaleTimeString('es-ES', { hour: 'numeric', minute: '2-digit' }) : '';
+const formatShortDate = (date) => {
+	if (date === today) return 'Hoy';
+	const parsed = new Date(`${date}T12:00:00`);
+	const weekday = parsed.toLocaleDateString('es-ES', { weekday: 'short' }).replace('.', '');
+	const day = parsed.getDate();
+	const month = parsed.toLocaleDateString('es-ES', { month: 'short' }).replace('.', '');
+	return `${weekday} ${day} ${month}`;
+};
+const formatTime = (time) => {
+	if (!time) return '';
+	const [hourText, minute] = time.split(':');
+	let hour = Number(hourText);
+	const period = hour >= 12 ? 'pm' : 'am';
+	hour = hour % 12;
+	if (hour === 0) hour = 12;
+	return `${hour}:${minute} ${period}`;
+};
 const formatAmount = (amount) => amount ? `$${Number(amount).toLocaleString('es-CO')}` : 'Sin registrar';
 
 const createAppointmentCard = (appointment) => {
@@ -25,7 +41,7 @@ const createAppointmentCard = (appointment) => {
 	card.type = 'button';
 	card.className = 'appointment-card';
 	card.dataset.id = appointment.id;
-	card.innerHTML = `<time class="appointment-time"><strong>${formatTime(appointment.time)}</strong><span>${appointment.date === today ? 'Hoy' : formatDate(appointment.date)}</span></time><span class="appointment-info"><strong>${appointment.client}</strong><span>${appointment.service}</span></span><span class="appointment-chevron">›</span>`;
+	card.innerHTML = `<span class="appointment-time"><strong>${formatTime(appointment.time)}</strong></span><span class="appointment-info"><span class="appointment-date">${formatShortDate(appointment.date)}</span><strong>${appointment.client}</strong><span class="appointment-service">${appointment.service}</span></span><span class="appointment-chevron">›</span>`;
 	card.addEventListener('click', () => openAppointmentDetail(appointment));
 	return card;
 };
