@@ -23,6 +23,34 @@
 			</div>
 		</header>
 
+		<section class="filter-toolbar" aria-label="Selector de periodo financiero">
+			<div class="filter-buttons" role="tablist" aria-label="Ver ingresos por">
+				<button type="button" class="filter-button is-active" data-range="month">Mes</button>
+				<button type="button" class="filter-button" data-range="week">Semana</button>
+				<button type="button" class="filter-button" data-range="day">Días</button>
+			</div>
+			<div class="filter-controls">
+				<label class="range-control" data-control="month">
+					<span>Mes</span>
+					<input id="period-month" type="month">
+				</label>
+				<label class="range-control is-hidden" data-control="week">
+					<span>Semana</span>
+					<input id="period-week" type="date">
+				</label>
+				<div class="range-control range-control--range is-hidden" data-control="day">
+					<label>
+						<span>Desde</span>
+						<input id="period-from" type="date">
+					</label>
+					<label>
+						<span>Hasta</span>
+						<input id="period-to" type="date">
+					</label>
+				</div>
+			</div>
+		</section>
+
 		<section class="summary-grid" aria-label="Resumen financiero">
 			<article class="summary-card summary-card--total">
 				<p class="summary-label">Ingresos totales</p>
@@ -31,10 +59,6 @@
 			<article class="summary-card">
 				<p class="summary-label">Citas registradas</p>
 				<strong class="summary-value" id="total-appointments">0</strong>
-			</article>
-			<article class="summary-card">
-				<p class="summary-label">Ticket promedio</p>
-				<strong class="summary-value" id="average-income">$0</strong>
 			</article>
 		</section>
 

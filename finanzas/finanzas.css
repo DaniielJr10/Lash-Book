@@ -17,6 +17,53 @@ a { color: inherit; text-decoration: none; }
 .eyebrow { margin: 0 0 3px; color: var(--pink); font-size: 12px; }
 h1 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: 31px; font-weight: 500; }
 
+.filter-toolbar {
+  margin: 0 0 18px;
+  padding: 14px 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: var(--surface);
+  box-shadow: 0 4px 14px #7c38500c;
+}
+.filter-buttons { display: flex; gap: 8px; margin-bottom: 12px; }
+.filter-button {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff9fa;
+  color: var(--muted);
+  padding: 9px 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.filter-button.is-active {
+  background: var(--pink-soft);
+  border-color: rgba(255, 93, 143, 0.5);
+  color: var(--pink);
+}
+.filter-controls { display: grid; }
+.range-control {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.range-control span { font-weight: 600; }
+.range-control input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px 12px;
+  color: var(--ink);
+  font: inherit;
+}
+.range-control--range { grid-template-columns: 1fr 1fr; gap: 10px; }
+.range-control--range label { display: grid; gap: 6px; }
+.is-hidden { display: none; }
+
 .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
 .summary-card { padding: 15px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: 0 4px 14px #7c38500c; }
 .summary-card--total { grid-column: 1 / -1; background: var(--pink-soft); }
