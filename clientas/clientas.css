@@ -14,7 +14,10 @@ button, input, select, textarea { font: inherit; }
 button, a { color: inherit; }
 .client-page { width: min(calc(100% - 28px), 430px); margin: 0 auto; padding: 16px 0 26px; }
 .page-header { display: flex; align-items: center; gap: 11px; margin: 0 4px 14px; }
-.back-link { font-size: 38px; line-height: 1; text-decoration: none; }
+.back-link { display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center; border: 1px solid #f2c6d6; border-radius: 50%; background: #fff7fa; color: #7b4f5f; text-decoration: none; font-size: 0; line-height: 1; transition: border-color .18s, background-color .18s, color .18s, transform .18s; }
+.back-link::before { content: "←"; font-size: 19px; font-weight: 600; transform: translateX(-1px); }
+.back-link:hover { border-color: #e8abc2; background: #fff0f6; color: #5f3b49; transform: translateX(-1px); }
+.back-link:focus-visible { outline: 2px solid #ffb9cf; outline-offset: 2px; }
 .eyebrow { margin: 0 0 2px; color: var(--pink); font-size: 12px; }
 h1 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: 30px; font-weight: 500; }
 .header-action { margin-left: auto; padding: 10px 16px; border: 0; border-radius: 9px; background: var(--pink); color: white; cursor: pointer; font-size: 13px; font-weight: 600; }
