@@ -75,6 +75,37 @@
 			</div>
 		</section>
 	</main>
+	<div class="appointment-modal" id="appointment-modal" hidden>
+		<div class="modal-backdrop" data-close-modal></div>
+		<article class="appointment-detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+			<button class="modal-close" type="button" data-close-modal aria-label="Cerrar detalle">×</button>
+			<p class="detail-kicker">Detalle de la cita</p>
+			<h2 id="detail-title">Cita</h2>
+			<div class="detail-date" id="detail-date"></div>
+			<div class="detail-grid">
+				<div class="detail-field--full"><span>Clienta</span><strong id="detail-client"></strong></div>
+				<div><span>Servicio</span><strong id="detail-service"></strong></div>
+				<div><span>Precio</span><strong id="detail-price"></strong></div>
+			</div>
+			<div class="detail-notes" id="detail-notes-wrap"><span>Notas</span><p id="detail-notes"></p></div>
+			<div class="detail-actions">
+				<button class="edit-button" id="edit-appointment" type="button">Editar cita</button>
+				<button class="delete-button" id="delete-appointment" type="button">Borrar</button>
+			</div>
+		</article>
+	</div>
+	<div class="confirm-modal" id="delete-modal" hidden>
+		<div class="modal-backdrop" data-close-delete></div>
+		<article class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="delete-title">
+			<div class="warning-icon" aria-hidden="true">!</div>
+			<h2 id="delete-title">¿Borrar esta cita?</h2>
+			<p id="delete-message">Esta acción no se puede deshacer.</p>
+			<div class="confirm-actions">
+				<button class="cancel-button" id="cancel-delete" type="button">Cancelar</button>
+				<button class="confirm-delete-button" id="confirm-delete" type="button">Borrar cita</button>
+			</div>
+		</article>
+	</div>
 	<script src="finanzas.js"></script>
 	<script src="../pwa.js"></script>
 </body>
