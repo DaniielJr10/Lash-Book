@@ -33,10 +33,14 @@ input:focus, select:focus, textarea:focus { border-color: #ff9ec2; box-shadow: 0
 .lash-health-panel .panel-title { margin-bottom: 10px; }
 .health-options { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 20px; }
 .health-options fieldset { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 7px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.health-options .eye-shape-group { column-gap: 16px; row-gap: 10px; }
+.health-options .eye-shape-group label:nth-of-type(even) { margin-left: 8px; }
 .health-options fieldset:nth-child(n+2) { grid-template-columns: repeat(3, 1fr); grid-column: 1 / -1; }
 .health-options legend { margin: 0 0 7px; padding: 0; color: var(--pink); font-size: 13px; font-weight: 500; }
 .health-options label { display: flex; min-width: 0; flex-direction: row; align-items: center; gap: 5px; color: var(--ink); font-size: 13px; font-weight: 400; white-space: nowrap; }
-.health-options input[type="radio"] { width: 17px; height: 17px; margin: 0; accent-color: #FF5D8F; }
+.health-options input[type="radio"] { width: 17px; height: 17px; min-width: 17px; min-height: 17px; flex: 0 0 17px; margin: 0; padding: 0; border: 2px solid #f7b4cb; border-radius: 50%; background: #fff; appearance: none; -webkit-appearance: none; cursor: pointer; box-sizing: border-box; }
+.health-options input[type="radio"]:checked { border-color: var(--pink); background: var(--pink); }
+.health-options input[type="radio"]:focus-visible { outline: 2px solid #ffb4cc; outline-offset: 2px; }
 .panel-help { margin: -5px 0 10px; color: var(--muted); text-align: center; font-size: 12px; }
 .eye-map { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .eye-card { min-width: 0; }
